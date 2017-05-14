@@ -109,4 +109,6 @@
 
 
 
-
+(defn minsend [x y] (if (< x y) x y))
+(defn text-out-agents [a n]
+  (map #(future (dosync (Thread/sleep (* 1000 (- n %))) (send a minsend %))) (reverse (range n))))
