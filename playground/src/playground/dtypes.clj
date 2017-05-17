@@ -58,7 +58,7 @@
 (def c1 (Chess. "Alex" "DevTalks"))
 (def c2 (->Chess "DevTalks" "Alex"))
 (def c3 (map->Chess {:x "Alex" :y "Alex"}))
-(def c4 #nearest_centroid_classifier.playground.dtypes.Chess{:x "Alex" :y "Monica"})
+(def c4 #playground.dtypes.Chess{:x "Alex" :y "Some Other Name"})
 
 ;; use
 (defn use-chess []

@@ -22,7 +22,7 @@
         
         exec #(do (prn @hidrogen)
                   (thrd %) ;; update atom in another thread
-                  (Thread/sleep 200)
+                  (Thread/sleep 10)
                   (prn @hidrogen))]
     (time (dotimes [run 10] (exec run)))))
 
@@ -81,7 +81,7 @@
 ;; agents
 (def secret-agent (agent {:id 007 :name :james-bond}))
 
-;; agents have theyr own thread-pool
+;; agents have their own thread-pool
 (import java.util.concurrent.Executors)
 (set-agent-send-executor! (Executors/newFixedThreadPool 10))
 
@@ -111,4 +111,5 @@
 
 (defn minsend [x y] (if (< x y) x y))
 (defn text-out-agents [a n]
-  (map #(future (dosync (Thread/sleep (* 1000 (- n %))) (send a minsend %))) (reverse (range n))))
+  (map #(future (dosync (Thread/sleep (* 1000 (- n %)))
+                        (send a minsend %))) (reverse (range n))))
